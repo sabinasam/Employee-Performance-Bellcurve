@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Performance Appraisal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Performance Appraisal</h1>
+        <form id="appraisalForm">
+            <label for="employeeId">Employee Id:</label>
+            <input type="text" id="employeeId" required>
+
+            <label for="performanceScore">Performance Score:</label>
+            <select id="performanceScore" required>
+                <option value="">Select a grade</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="scripts.js">
+    document.getElementById('appraisalForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const employeeName = document.getElementById('employeeName').value;
+        const performanceScore = document.getElementById('performanceScore').value;
+
+        // Check if the performance score is selected
+        if (performanceScore === "") {
+            alert("Please select a performance score.");
+            return;
+        }
+
+        // Redirect to the result page with the performance score as a query parameter
+        window.location.href = `result.html?score=${performanceScore}&name=${encodeURIComponent(employeeName)}`;
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Score Result</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Performance Score Result</h1>
+        <div id="resultImage"></div>
+        <button onclick="goBack()">Go Back</button>
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        // Get the query parameters from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const score = urlParams.get('score');
+        const name = urlParams.get('name');
+
+        // Display the corresponding image based on the score
+        const resultImageDiv = document.getElementById('resultImage');
+        let imageSrc = '';
+
+        switch (score) {
+            case 'A':
+                imageSrc = 'images/a_grade.png'; // Path to A grade image
+                break;
+            case 'B':
+                imageSrc = 'images/b_grade.png'; // Path to B grade image
+                break;
+            case 'C':
+                imageSrc = 'images/c_grade.png'; // Path to C grade image
+                break;
+            case 'D':
+                imageSrc = 'images/d_grade.png'; // Path to D grade image
+                break;
+            case 'E':
+                imageSrc = 'images/e_grade.png'; // Path to E grade image
+                break;
+            default:
+                imageSrc = 'images/default.png'; // Default image if no valid score
+        }
+
+        // Set the image source
+        resultImageDiv.innerHTML = `<h2>${name}'s Performance Score: ${score}</h2>
+                                     <img src="${imageSrc}" alt="Performance Score: ${score}" style="max-width: 100%; height: auto;">`;
+    </script>
+</body>
+</html>
